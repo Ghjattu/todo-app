@@ -4,7 +4,7 @@ import controllers from './controllers/controllers';
 import { Card, CardContent, TextField, Typography } from '@mui/material';
 
 const App = () => {
-    const [task, setTask] = useState("");
+    const [content, setContent] = useState("");
     const [taskList, setTaskList] = useState([]);
 
     useEffect(() => {
@@ -25,12 +25,16 @@ const App = () => {
         </Card>
     )
 
-    const handleSubmit = () => {
-        alert("submit")
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const returnedTask = await controllers.createTask({ content: content, status: false });
+        setTaskList(taskList.concat(returnedTask));
+        setContent("");
     }
 
     const handleChange = (event) => {
-        setTask(event.target.value)
+        setContent(event.target.value)
     }
 
     return (
@@ -38,7 +42,7 @@ const App = () => {
             <div className="container">
                 <form onSubmit={handleSubmit}>
                     <TextField fullWidth label="Create Tasks" variant="filled" size="small"
-                        value={task} onChange={handleChange} />
+                        value={content} onChange={handleChange} />
                 </form>
                 <div className="card-list">
                     {cardList}
