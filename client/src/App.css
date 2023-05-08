@@ -6,7 +6,6 @@
 }
 
 .container {
-    /* display: flex; */
     margin: 100px auto 0;
     max-width: 800px;
 }
@@ -20,5 +19,19 @@
 }
 
 .card-content:last-child {
-    padding-bottom: 16px !important;
+    padding-bottom: .6rem !important;
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.menu>* {
+    display: flex;
+    align-items: center;
+
+    padding: 0 10px;
+
+    cursor: pointer;
 }
